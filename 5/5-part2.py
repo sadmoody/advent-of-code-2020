@@ -4,13 +4,7 @@ with open('input.txt') as f:
     highest_seat_id = 0
     sum_of_id = 0
     for seat in seats:
-        row = 0
-        for i in range(7):
-            row += 1 << (6-i) if seat[i]=='B' else 0
-        column = 0
-        for i in range(7,10):
-            column += 1 << (9-i) if seat[i]=='R' else 0
-        seat_id = row * 8 + column
+        seat_id = int(seat.replace('B', r'1').replace('F', r'0').replace('R', r'1').replace('L', r'0'), base=2)
         if seat_id > highest_seat_id:
             highest_seat_id = seat_id
         if seat_id < lowest_seat_id:
